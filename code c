@@ -1,3 +1,4 @@
+
 #include <stdio.h>
 int main() {
 int a, b,c, r, q, d1,d2,i = 1,x,y,N;
@@ -43,10 +44,11 @@ printf("%d * %d*%d + %d * %d*%d= %d\n.", a, x0,d2, b + a * (q), y0,d2, a);
 // Vérification si les deux nombres sont premiers entre eux
 x=x0*d2;y=y0*d2;
 printf("les solutions sont x=%d et y=%d\n",x,y);
-printf("les solutions finales sont:(x,y)=(%d+%d*k,%d+%d*k) avec k ∈ Z.",x,x0,y,y0);
+printf("les solutions finales sont:(x,y)=(%d+%d*k,%d+%d*k) avec k ∈ Z.\n",x,x0,y,y0);
 if (a == 1)
 printf("Les deux nombres sont premiers entre eux.\n");
-printf("entrer un entier N");
+printf("entrer un entier N:");
+scanf("%d",&N);
  printf("Les nombres premiers inférieurs à N sont :\n");
     for (int n = 2; n < N; n++) {
         int estPremier = 1; // on suppose que n est premier
@@ -59,4 +61,6 @@ printf("entrer un entier N");
         if (estPremier) {
             printf("%d ", n);
         }
+    }
+        return 0;
     }
