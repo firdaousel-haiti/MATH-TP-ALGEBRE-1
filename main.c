@@ -1,0 +1,67 @@
+#include <stdio.h>
+int main() {
+int a, b,c, r, q, d1,d2,i = 1,x,y,N;
+// Initialisation des coefficients de Bézout
+int x0 = 1, x1 = 0, y0 = 0, y1 = 1;
+// Demande à l'utilisateur d'entrer deux entiers
+printf("Entrer deux entiers a et b : ");
+scanf("%d%d", &a, &b);
+printf("entrer c tell que: ax+by=c:");
+scanf("%d",&c); // Affichage de l'étape initiale
+printf("Étape %d : a=%d, b=%d, x=%d, y=%d\n", i, a, b, x0, y0);
+int alpha=a+1,beta=(-b+1);
+// Boucle de l'algorithme d'Euclide étendu
+while (b != 0) {
+r = a % b; // Calcul du reste
+q = a / b; // Calcul du quotient
+// Affichage des valeurs à chaque étape
+printf("Étape %d : a=%d, b=%d, le quotient est : %d, le reste est : %d, x=%d, y=%d\n", i + 1, a, b, q, r, x1, y1);
+// Mise à jour des valeurs de a et b
+a = b;
+b = r;
+d1=a;
+// Mise à jour des coefficients de Bézout
+int x2 = x0 - q * x1;
+int y2 = y0 - q * y1;
+x0 = x1;
+x1 = x2;
+y0 = y1;
+y1 = y2;
+i++; // Incrémentation du compteur d'étapes
+}
+d2=c/d1;
+// verification d'existance des solution pour l'eq diophantienne:
+if(c%d1==0){
+printf("il existe des solutions entiers\n");}
+else
+printf("il ya pas de solution entiers pour l'eq\n");
+// Affichage du PGCD
+printf("Le PGCD est : %d\n", d1);
+// Affichage des coefficients de Bézout
+printf("Les coefficients de Bézout sont : x = %d, y = %d\n", x0, y0);
+// Vérification de l'identité de Bézout
+printf("%d * %d*%d + %d * %d*%d= %d.\n", a, x0,d2, b + a * (q), y0,d2, a);
+// Vérification si les deux nombres sont premiers entre eux
+x=x0*d2;y=y0*d2;
+alpha=(alpha-1)/d1,beta=(beta-1)/d1;
+printf("les solutions sont x=%d et y=%d\n",x,y);
+printf("les solutions finales sont:(x,y)=(%d+(%d)*k,%d+(%d)*k) avec k appartient a Z.\n",x,beta,y,alpha);
+if (a == 1)
+printf("Les deux nombres sont premiers entre eux.\n");
+printf("entrer un entier N:");
+scanf("%d",&N);
+ printf("Les nombres premiers inférieurs à N sont :\n");
+    for (int n = 2; n < N; n++) {
+        int estPremier = 1; // on suppose que n est premier
+        for (int i = 2; i < n; i++) {
+            if (n % i == 0) {
+                estPremier = 0; // n n'est pas premier
+                break;
+            }
+        }
+        if (estPremier) {
+            printf("%d ", n);
+        }
+    }
+        return 0;
+    }
